@@ -17,7 +17,7 @@
 </head>
 <body>
 <main>
-  <header><img src="korrun-logo.png" alt="Korrun"><div><h1>OA 审批 AI 助手隐私说明</h1><div class="muted">生效日期：2026 年 10 月 30 日 · 发布者：Korrun</div></div></header>
+  <header><img src="./korrun-logo.png" alt="Korrun"><div><h1>OA 审批 AI 助手隐私说明</h1><div class="muted">生效日期：2026 年 10 月 30 日 · 发布者：Korrun</div></div></header>
   <p class="notice">本扩展面向有权使用公司 OA 的员工，用于付款预审。首次使用须在扩展中明确同意；随后选择预审技能才开始读取业务字段、附件和外部辅助审核。最终审批由人工决定。</p>
   <h2>处理哪些数据</h2>
   <ul><li>当前 OA 单据的流程号、表单字段、明细、付款公司与供应商、金额、附件名称，以及完成预审所需的附件内容和关联流程证据。</li>
@@ -27,6 +27,7 @@
   <ul><li>公司后端 <strong>https://oaai.czfac.cn</strong>：接收预审所需表单/附件，执行规则、解析、识别及审核记录保存。扩展向公司后端的业务请求使用 HTTPS。</li>
   <li><strong>DeepSeek API</strong>：根据表单和已读取附件正文提供付款语义审核建议。</li>
   <li><strong>百度 OCR</strong>：识别图片、扫描或图文 PDF、Office 内嵌图片及必要合同印章证据。原始识别材料会传给该服务。</li>
+  <li><strong>Bing、360公开搜索</strong>：联网比价时接收从采购材料提取的商品名称、品牌、型号及规格，返回公开销售网页线索；不把申请人、公司、流程号、采购价格或合同全文作为搜索词。公司后端随后访问公开商品页，核对可比报价；不向这些网站发送OA登录凭据或附件。</li>
   <li>上述传输仅用于你选择的预审功能。发布者不出售业务数据，不将其用于广告或另行训练通用模型。第三方 API 的处理与留存还受其服务条款约束，本扩展不承诺供应商固定保留天数。</li></ul>
   <p>供应商资料：<a href="https://cdn.deepseek.com/policies/en-US/deepseek-open-platform-terms-of-service.html" target="_blank" rel="noopener noreferrer">DeepSeek 开放平台条款</a>、<a href="https://cloud.baidu.com/doc/Agreements/s/Plr0fi68q" target="_blank" rel="noopener noreferrer">百度智能云隐私政策</a>。公司应按其允许的数据范围使用这些服务。</p>
   <h2>保存方式与期限</h2>
@@ -34,6 +35,7 @@
   <ul><li>本机使用 Chrome 本地存储缓存最新审核结果，最多 <strong>100 条</strong>，最长 <strong>30 天</strong>，总量不超过 2 MiB；到期记录不再用于复用，并在访问缓存时清理。审核缓存不使用 Chrome 同步存储。</li>
   <li>本机缓存不保存附件原始字节、base64、完整 OCR 正文或审核写入凭据；OA 文件标识以指纹保存。表单快照和审核建议仍可能包含财务与个人信息。</li>
   <li>公司服务器保存审核快照、清单、建议和诊断，不在审核数据库保存附件原始字节、base64或完整 OCR 正文。Office 转换仅在受保护临时目录处理，完成或失败后清理。</li>
+  <li>联网比价保存商品及单价、可比报价、来源链接、查询时间与判断依据，不保存抓取的完整商品网页或提取时的业务正文。报价作为当时公开参考，超过30分钟不再直接复用来判断当前价格。</li>
   <li>服务器审核记录<strong>当前不自动到期删除</strong>，由管理员按业务审计与实际留存要求管理。关闭扩展或清除本机缓存不会删除已形成的服务器审计记录。</li>
   <li>服务器、反向代理和外部服务可能保留必要的运行与安全日志。扩展不会通过公开流程号查询接口向其他用户展示服务器历史记录。</li></ul>
   <h2>你的选择</h2>
